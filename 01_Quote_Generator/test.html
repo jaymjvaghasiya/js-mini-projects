@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background: url("books-2596809_1280.jpg");
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .outer-box{
+        width: 70%;
+        text-align: center;
+    }
+    .jsq{
+        background-color: black;
+        border: 2px solid aliceblue;
+        border-radius: 10px;
+        
+        font-weight: 100;
+        font-family: Arial, Helvetica, sans-serif;
+        color: aliceblue;
+        font-size: 1.5rem;
+        padding: 1rem 3rem;
+    }
+    .div2{
+        background-color: aliceblue;
+        padding: 1rem 3rem;
+        border-radius: 10px;
+        height: 250px;
+        margin-top: 2rem;
+    }
+    .para{
+        text-align: center;
+        padding-top: 2rem;
+        letter-spacing: 1px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    .btn1:hover{
+        cursor: pointer;
+    }
+    .author{
+        margin-top: 3rem;
+        color: brown;
+        font-size: 1.5rem;
+        letter-spacing: 4px;
+    }
+    .btn1{
+        background-color: black;
+        color: aliceblue;
+        margin-top: 1rem;
+        border-radius: 5px;
+        padding: 6px;
+    }
+</style>
+
+<body>
+    <div class="outer-box">
+        
+            <btn class="jsq">Javascript Quote Generator</btn>
+        
+        <div class="div2">
+            <p class="para">"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, deserunt! Nesciunt ducimus odit illo modi libero necessitatibus provident cum veniam."</p>
+            <p class="author">AUTHOR NAME</p>
+            <button class="btn1">New Quote</button>
+        </div>
+    </div>
+</body>
+<script>
+    let btn = document.querySelector('.btn1');
+    // console.log(btn);
+    let para = document.querySelector('.para');
+    let author = document.querySelector('.author');
+    // console.log(para);
+    // console.log(author);
+
+    let quoteArray = [
+        {
+            quote: "Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live",
+            author: "John Woods"
+        }, 
+        {
+            quote:"Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+            author:"Martin Fowler"
+        },
+        {
+            quote : "Programmers seem to be changing the world. It would be a relief, for them and for all of us, if they knew something about it.",
+            author : "Ellen Ullman"
+        },
+        {
+            quote : "It's not a bug; it's an undocumented feature.",
+            author : "Anonymous"
+        },
+        {
+            quote : "Learning the art of programming, like most other disciplines, consists of first learning the rules and then learning when to break them.",
+            author : "Joshua Bloch" 
+        },
+        {
+            quote : "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+            author : "Martin Fowler"
+        },
+        {
+            quote: "Every programmer is an author",
+            author:"Sercan Leylek"
+        },
+        {
+            quote:"Everyone should learn how to code,it teaches you how to think.",
+            author:"Steve Jobs"
+        },
+        {
+            quote:"Progress is possible only if we train ourselves to think about programs without thinking of them as pieces of executable code.",
+            author:"Edsger W. Dijkstra"
+        },
+        {
+            quote:"A language that doesn't affect the way you think about programming is not worth knowing.",
+            author:"Alan J. Perlis"
+        }
+    ];
+
+    btn.addEventListener('click', () => {
+        let index = Math.floor(Math.random() * 10);
+        para.innerText = quoteArray[index]['quote'];
+        author.innerText = quoteArray[index]['author'];
+    })
+
+</script>
+</html>
+

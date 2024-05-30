@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- fontawesome css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Template 3</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-image: url('bg-img.jpeg');
+        background-size: cover;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    input,
+    button {
+        font-size: 1.5rem;
+        border-radius: 10px;
+    }
+    
+    input {
+        width: 30rem;
+        padding: 0.5rem 2rem;
+    }
+
+    button {
+        width: 4rem;
+        height: 3rem;
+        cursor: pointer;
+        font-size: 2.2rem;
+    }
+
+    button:hover {
+        background-color: white;
+    }
+
+    .box {
+        width: fit-content;
+        height: fit-content;
+        background-color: white;
+        padding: 1rem;
+        display: flex;
+        border-radius: 10px;
+        gap: 2rem;
+    }
+
+    .task-container{
+        background-color: white;
+        font-size: 1.3rem;
+        margin-top: 1rem;
+        border-radius: 10px;
+    }
+
+    .show-task-pad{
+        padding: 1rem 2rem;
+    }
+
+    .task{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .icon-btn{
+        border: solid 1px;
+        padding: 4px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .icon-btn:hover{
+        color: white;
+    }
+    
+    .edit-icon:hover{
+        background-color: black;
+    }
+
+    .check-icon{
+        color: rgb(20, 155, 20);
+    }
+
+    .check-icon:hover{
+        background-color: rgb(20, 155, 20);
+    }
+
+    .trash-icon{
+        color: red;
+    }
+
+    .trash-icon:hover{
+        background-color: red;
+    }
+
+    .task-saperator{
+        margin: 0.5rem 0;
+    }
+
+    .line-through{
+        text-decoration: line-through;
+    }
+
+</style>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <input type="text" name="" id="task-input" placeholder="Enter Task">
+            <button id="add-task">+</button>
+        </div>
+        <div class="task-container">
+            <!-- <div class="task">
+                <p>Ram</p>
+                <div class="icons">
+                    <i class="fa-solid fa-pen-to-square icon-btn edit-icon"></i>
+                    <i class="fa-solid fa-check icon-btn check-icon"></i>
+                    <i class="fa-solid fa-trash icon-btn trash-icon"></i>
+                </div>
+            </div>
+            <hr class="task-saperator">
+            <div class="task">
+                <p>Ram</p>
+                <div class="icons">
+                    <i class="fa-solid fa-pen-to-square icon-btn edit-icon"></i>
+                    <i class="fa-solid fa-check icon-btn check-icon"></i>
+                    <i class="fa-solid fa-trash icon-btn trash-icon"></i>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</body>
+<script>
+    let addTask = document.getElementById('add-task');
+    let input = document.getElementById('task-input');
+    let taskContainer = document.querySelector('.task-container');
+    let taskSaperator;
+    var count = 0
+
+    addTask.addEventListener('click', () => {
+        inputValue = input.value;
+        count++;
+        if(inputValue != '')
+        {
+            input.value = '';
+            let task = document.createElement('div');
+            task.setAttribute('class', 'task');
+            task.innerHTML = `<p>${inputValue}</p>
+                <div class="icons">
+                    <i class="fa-solid fa-pen-to-square icon-btn edit-icon"></i>
+                    <i class="fa-solid fa-check icon-btn check-icon"></i>
+                    <i class="fa-solid fa-trash icon-btn trash-icon"></i>
+                </div>`
+            if(count==1)
+            {
+                taskContainer.classList.add('show-task-pad');
+            }
+            if(count > 1)
+            {
+                taskSaperator = document.createElement('hr');
+                taskSaperator.setAttribute('class', 'task-saperator');
+                taskContainer.appendChild(taskSaperator);
+            }
+            taskContainer.appendChild(task);
+        }
+    })
+
+    window.addEventListener('click', (e) => {
+        target = e.target;
+
+        if(target.classList.contains('edit-icon'))
+        {
+            var task = prompt("Enter task: ");
+            target.parentElement.previousElementSibling.innerText = task;
+        }
+
+        if(target.classList.contains('check-icon'))
+        {
+            target.parentElement.previousElementSibling.classList.toggle('line-through');
+            console.log(target.parentElement.previousElementSibling);
+        }
+
+        if(target.classList.contains('trash-icon'))
+        {
+            count--;
+            if(target.parentElement.parentElement.nextElementSibling != null)
+            {
+                target.parentElement.parentElement.nextElementSibling.remove();
+            }
+            else if(target.parentElement.parentElement.previousElementSibling != null)
+            {
+                target.parentElement.parentElement.previousElementSibling.remove();
+            }
+            if(count==0)
+            {
+                taskContainer.classList.remove('show-task-pad');
+            }
+            target.parentElement.parentElement.remove();
+        }
+
+    })
+
+</script>
+</html>
